@@ -12,7 +12,9 @@
         <ul class="list-group">
             {% for post in posts %}
                 <li class="list-group-item">
-                    <a href="{% url 'post_detail' post.id %}" class="text-decoration-none">{{ post.title }}</a>
+                    <a href="{% if user.is_authenticated %}{% url 'post_detail' post.id %}{% else %} {% url 'login' %} {% endif %}">
+                        {{ post.title }}
+                    </a>
                 </li>
             {% endfor %}
         </ul>
